@@ -34,16 +34,16 @@ print("Now your mission is to find the treasure $$ ")
 x = input("You are now in the middle of the island will you go left or right \n")
 
 if x == "right":
-    print("Fail into hole, Game Over !!")
+    print("Fall into a hole, Game Over !!")
 elif x == "left":
-    y = input("now you are facing a sea will you swim or wait \n")
+    y = input("now you are facing a sea will you swim or wait a boat \n")
     if y == "swim":
         print("you are attacked by shark , Game Over")
     if y == "wait":
-        print("now you took the boat and arrived to nex area \n you are facing 3 doors red, yellow, blue select one\n")
+        print("now you took the boat and arrived to nex area \n you are facing 3 doors red, yellow, blue choose one\n")
         y = input()
         if y == "red":
-            print ("burned by fire , Game Over")
+            print ("you are burned by fire , Game Over")
         if y == "blue":
             print("You are dead , Game Over !!")
         if y == "yellow":
