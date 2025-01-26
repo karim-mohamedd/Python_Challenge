@@ -48,6 +48,10 @@ elif x == "left":
             print("You are dead , Game Over !!")
         if y == "yellow":
             print("Good job you arrived to the treasure, You won")
+        else:
+            print("You are Dead !!")
+    else:
+        print("Game Over !!")
 else:
     print("Game Over !!")
 
