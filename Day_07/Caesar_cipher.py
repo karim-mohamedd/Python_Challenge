@@ -45,7 +45,7 @@ while not_end:
         if y == "y":
             continue
         elif y == "n":
-            print("I was happy to help you to decrypt your message")
+            print("I was happy to help you to decrypt your message ❤️")
             not_end = False
         else:
             print("Error, Please enter 'y' for yes and 'n' for no: ")
@@ -56,7 +56,7 @@ while not_end:
         if z == "y":
             continue
         elif z == "n":
-            print("I was happy to help you to encrypt your message")
+            print("I was happy to help you to encrypt your message ❤️")
             not_end = False
         else:
             print("Error, Please enter 'y' for yes and 'n' for no")
