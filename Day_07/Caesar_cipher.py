@@ -18,8 +18,8 @@ print("================== Hello iam Caesar Cipher i will help you to encrypt and
 
 
 # the encryption function
-cipher = [""]
 def encrypt(original_text, shift): 
+    cipher = [""]
     for i in original_text:
         encoded_text = chr((ord(i)) + shift)       # ord to get the ascii for the letter and chr to convert it to letter
         cipher.append(encoded_text)
@@ -27,8 +27,8 @@ def encrypt(original_text, shift):
     print(f"Your secret text is:  {final_cipher}\n")
 
 # the decryption function
-text = [""]
 def decrypt(cipher_text, shift):
+    text = [""]
     for i in cipher_text:
         original_text = chr((ord(i)) - shift)
         text.append(original_text)
@@ -43,9 +43,7 @@ while not_end:
         decrypt(input("Enter the cipher text to decrypt\n"), int(input("Enter the shift factor: \n")))
         y = input("do you want to decrypt or encrypt another message: y or n: ")
         if y == "y":
-            text.clear()
             continue
-            not_end = False
         elif y == "n":
             print("I was happy to help you to decrypt your message")
             not_end = False
@@ -56,9 +54,7 @@ while not_end:
         encrypt(input("enter the text: "), int(input("enter the shift factor: ")))
         z = input("do you want to decrypt or encrypt another message: y or n: ")
         if z == "y":
-            cipher.clear()
             continue
-            not_end = False
         elif z == "n":
             print("I was happy to help you to encrypt your message")
             not_end = False
