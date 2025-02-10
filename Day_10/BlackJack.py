@@ -15,8 +15,7 @@ print('''
 #number 10 is repeated to represent the queen and other cards equal to 10
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
-# ask user to play
-play = input("Do you want to play game of blackjack (y/n): ")
+
 my_cards = []
 computer_cards = []
 complete = True
@@ -34,7 +33,7 @@ while complete:
         my_cards.append(random.choice(cards))
         computer_cards.append(random.choice(cards))
         print(f"your card is {my_cards[-1]}")
-        print("===================================================")
+        print("================================================")
         print(f"your cards are {my_cards}")
         print(f"Computer first card is {computer_cards[0]}")
         if sum(my_cards) > 21:
