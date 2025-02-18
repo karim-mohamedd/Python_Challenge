@@ -66,7 +66,7 @@ Here is a general structure for the challenge:
 - Day 43-49: Data visualization with Matplotlib and Seaborn
 - Day 50-56: Introduction to Flask/Django
 
-### Week 9-12: Projects
+### Week 9-12: Building Projects
 - Day 57-70: Build intermediate projects (e.g., To-Do App, Weather App, Web Scraper)
 - Day 71-85: Advanced projects (e.g., Blog, E-commerce App, Machine Learning models)
 - Day 86-100: Final Capstone Project
