@@ -18,6 +18,7 @@ while is_on:
         coffee_maker.report()
         money_machine.report()
     else:
+        # notice that find drink method is returning MenuItem object if found, so drink var is MenuItem Object
         drink = menu.find_drink(choice)
         if coffee_maker.is_resource_sufficient(drink):
             if money_machine.make_payment(drink.cost):
