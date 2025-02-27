@@ -26,12 +26,12 @@ while User_Bet not in colors:
 
 while is_race_on:
     for turtle in All_turtles:
-        if turtle.xcor() > 230:
+        if turtle.xcor() > 230:                  # "xcor()" stand for x-coordinate
             is_race_on = False
-            winning_color = turtle.pencolor()
-            turtle.hideturtle()
+            winning_color = turtle.pencolor()    # This to capture the wining turtle
+            turtle.hideturtle()                  # This will hide the turtle after arriving to end
             if winning_color == User_Bet:
-                turtle.setpos(0,170)
+                turtle.setpos(0,170)             # The first argument is X-axis and the second is Y-axis setpos for setposition
                 turtle.write(f"You Won !! {winning_color} is The winning turtle", align="center", font=("Arial", 12, "bold"))
             else:
                 turtle.setpos(0,170)
