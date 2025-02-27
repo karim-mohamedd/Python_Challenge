@@ -27,7 +27,7 @@ def Clear_Screen():
 
 
 screen.listen()
-screen.onkeypress(key="w",fun=Forwards)
+screen.onkey(key="w",fun=Forwards)
 screen.onkey(key="s",fun=Backwards)
 screen.onkey(key="a",fun=Counter_Clockwise)
 screen.onkey(key="d",fun=Clockwise)
