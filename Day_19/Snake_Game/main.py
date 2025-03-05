@@ -7,12 +7,12 @@ import time
 # Setting the screen 
 screen = Screen()
 screen.setup(width=600, height=600)
-screen.tracer(0)
+screen.tracer(0)                       #Tracer which enable and disable the animation
 screen.bgcolor("black")
 screen.title("My Snake Game")
 
 
-# getting Snake module 
+# getting modules 
 snake = Snake()
 food = Food()
 score = ScoreBoard()
@@ -29,8 +29,6 @@ while game_is_on:
     time.sleep(0.1)
     snake.move()
     
-    
-    #Detect the food
     if snake.head.distance(food) < 15:
         food.refresh()
         snake.extend()
