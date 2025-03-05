@@ -48,21 +48,4 @@ while game_is_on:
             score.Game_Over()
             
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 screen.exitonclick()
