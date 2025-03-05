@@ -1,5 +1,7 @@
 from turtle import Turtle, Screen
 from snake import Snake
+from food import Food
+from scoreboard import ScoreBoard
 import time
 
 # Setting the screen 
@@ -12,6 +14,8 @@ screen.title("My Snake Game")
 
 # getting Snake module 
 snake = Snake()
+food = Food()
+score = ScoreBoard()
 
 screen.listen()
 screen.onkey(snake.up, "Up")
@@ -23,8 +27,20 @@ game_is_on = True
 while game_is_on:
     screen.update()
     time.sleep(0.1)
-
     snake.move()
+    
+    
+    #Detect the food
+    if snake.head.distance(food) < 15:
+        food.refresh()
+        snake.extend()
+        score.increase()
+
+    if ((snake.head.xcor() > 290 or snake.head.xcor() < -290) or(snake.head.ycor() < -290 or snake.head.ycor() > 290)):
+        score.Game_Over()
+        game_is_on = False
+
+    
 
 
 
