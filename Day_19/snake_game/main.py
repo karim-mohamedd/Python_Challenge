@@ -8,8 +8,8 @@ screen.tracer(0)
 screen.bgcolor("black")
 screen.title("My Snake Game")
 
-# Creating the default start of the game (3 segments of white snake each is 20x20 size)
 
+# getting Snake module 
 snake = Snake()
 
 screen.listen()
