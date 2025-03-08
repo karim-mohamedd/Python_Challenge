@@ -13,7 +13,7 @@ screen.title("Pong Game")
 screen.tracer(0)
 
 
-#
+#My Objects 
 paddle_r = Paddle(RIGHT)
 paddle_l = Paddle(LEFT)
 ball = Ball()
