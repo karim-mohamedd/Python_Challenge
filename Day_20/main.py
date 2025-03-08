@@ -47,4 +47,5 @@ while is_on:
         ball.reset_position()
         score_board.r_point()
 
+
 screen.exitonclick()
