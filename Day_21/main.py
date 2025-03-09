@@ -10,4 +10,3 @@ with open ("C:/Users/ascom/Desktop/Python_Challenge/Day_21/Input/Letters/startin
         new_letter = letter_content.replace(PLACEHOLDER, stripped_name)
         with open(f"C:/Users/ascom/Desktop/Python_Challenge/Day_21/Output/ReadyToSend/letter_for_{stripped_name}.docx", mode="w") as send_file:
             send_file.write(new_letter)
-
