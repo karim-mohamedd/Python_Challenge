@@ -1,6 +1,6 @@
 import pandas
 
-# Creating a new dictionary from a csv after making dataframe
+# This small project shows the power of Dictionary Comprehension and list Comprehension it replaced so many lines of code
 df = pandas.read_csv("nato_phonetic_alphabet.csv")
 
 
