@@ -10,18 +10,42 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 CHECK_MARK = "✔"
+reps = 0
 # ---------------------------- TIMER RESET ------------------------------- # 
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 def start_timer():
-    count_down(5*60)
+    global reps
+    reps += 1
+
+    work_in_sec = WORK_MIN * 60 
+    short_break_in_sec = SHORT_BREAK_MIN * 60
+    long_break_sec = LONG_BREAK_MIN * 60
+    if reps % 8 == 0 :
+        count_down(long_break_sec)
+        title_label.config(text="Break",fg=RED)
+    elif reps % 2 == 0:
+        count_down(short_break_in_sec)
+        title_label.config(text="Break",fg=PINK)
+    else:
+        count_down(work_in_sec)
+        title_label.config(text="Work",fg=GREEN)
+    
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 def count_down(count):
     count_min = math.floor(count / 60)
     count_sec = count % 60
-    canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")                #it is how u change item in canvas class
+    if count_sec < 10 :
+        count_sec = f"0{count_sec}"
+    canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}") #this line to edit on the text in canvas               #it is how u change item in canvas class
     if count > 0:
         window.after(1000, count_down, count - 1)  # This is very important because it waits for specific time in ms and do some function
+    else:
+        start_timer()
+        mark = ""
+        for _ in range(math.floor(reps / 2)):
+            mark += CHECK_MARK
+        check_mark.config(text=mark)
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -32,7 +56,7 @@ window.config(padx=100, pady=50, bg=YELLOW )
 title_label = Label(text="Timer", fg=GREEN, bg=YELLOW, font=(FONT_NAME, 50))
 title_label.grid(column=1, row=0)
 
-check_mark = Label(text=CHECK_MARK, fg=GREEN, bg=YELLOW)
+check_mark = Label(fg=GREEN, bg=YELLOW)
 check_mark.grid(column=1, row=3)
 
 start_button = Button(text="Start", highlightthickness=0, command=start_timer)
@@ -47,7 +71,6 @@ tomato_img = PhotoImage(file="tomato.png")  # This is the way to get hold of pho
 canvas.create_image(100, 112, image = tomato_img)
 timer_text = canvas.create_text(100, 130, text="00:00", fill="white",font=(FONT_NAME, 35, "bold"))
 canvas.grid(column=1, row=1)
-
 
 
 
