@@ -11,8 +11,16 @@ SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 CHECK_MARK = "✔"
 reps = 0
+my_timer = None
 # ---------------------------- TIMER RESET ------------------------------- # 
-
+def reset_timer():
+    global my_timer
+    window.after_cancel(my_timer)
+    canvas.itemconfig(timer_text, text="00:00")
+    title_label.config(text="Timer")
+    check_mark.config(text="")
+    global reps
+    reps = 0
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 def start_timer():
     global reps
@@ -39,7 +47,8 @@ def count_down(count):
         count_sec = f"0{count_sec}"
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}") #this line to edit on the text in canvas               #it is how u change item in canvas class
     if count > 0:
-        window.after(1000, count_down, count - 1)  # This is very important because it waits for specific time in ms and do some function
+        global my_timer
+        my_timer = window.after(1000, count_down, count - 1)  # This is very important because it waits for specific time in ms and do some function
     else:
         start_timer()
         mark = ""
@@ -62,7 +71,7 @@ check_mark.grid(column=1, row=3)
 start_button = Button(text="Start", highlightthickness=0, command=start_timer)
 start_button.grid(column=0, row=2)
 
-reset_button = Button(text="Reset", highlightthickness=0)
+reset_button = Button(text="Reset", highlightthickness=0, command=reset_timer)
 reset_button.grid(column=2, row=2)
 #-----------------------------------------------------------
 
