@@ -39,13 +39,11 @@ def add_password():
     email_entry.delete(0, 'end')
     password_entry.delete(0, 'end')
     website_entry.focus()
-
 # ---------------------------- UI SETUP --------------------------------------- #
 window = Tk()
 window.title("password man")
 window.config(padx=20,pady=20)
-
-#--------------------------------- Labels ------------------------------------- #
+#-------------------------------- Labels -------------------------------------- #
 website_label = Label(text="Website/Username: ")
 website_label.grid(row=1, column=0, sticky="e")
 
@@ -54,7 +52,6 @@ email_label.grid(row=2, column=0, sticky="e")
 
 password_label = Label(text="Password: ")
 password_label.grid(row=3, column=0, sticky="e")
-
 #-------------------------------- Entries ------------------------------------- #
 website_entry = Entry(width=39)
 website_entry.grid(row=1, column=1, columnspan=2, pady=5)
@@ -66,7 +63,6 @@ email_entry.insert(0, "karimelwaraky50@gmail.com")
 
 password_entry = Entry(width=26)
 password_entry.grid(row=3, column=1, pady=5, sticky="e")
-
 #------------------------------ Buttons ---------------------------------------- #
 generate_password_button = Button(text="Generate Password", width=15, command=generate_password)
 generate_password_button.grid(row=3, column=2, padx=1, pady=3)
@@ -74,7 +70,6 @@ generate_password_button.grid(row=3, column=2, padx=1, pady=3)
 add_password_button = Button(text="Add", width=33, command=add_password)
 add_password_button.grid(row=4, column=1, columnspan=2)
 #------------------------------------------------------------------------------- #
-
 canvas = Canvas(width=200, height=200, highlightthickness=0)
 password_man = PhotoImage(file="logo.png")
 canvas.create_image(100,100,image=password_man)
