@@ -46,7 +46,7 @@ def add_password():
         except FileNotFoundError:
             with open("Data.json", mode="w") as data_file:
                 json.dump(new_data, data_file, indent=4)
-        else: # This will work if everything in try work successfully
+        else:                                               # This will work if everything in 'try' works successfully
             # Updating the data
              data.update(new_data)
 
