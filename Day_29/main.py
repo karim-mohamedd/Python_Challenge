@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import random
+import  json
 
 EXPECTED_PASS = 8
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -25,20 +26,60 @@ def add_password():
     email = email_entry.get()
     password = password_entry.get()
     pass_len = len(password)
+
+    new_data = {
+        website:
+                {
+                    "email":email,
+                    "password":password
+                }
+        }
     
-    is_ok = messagebox.askokcancel(title=website , message=f"these are the details you entered: \nEmail: {email}\nPassword: {password}\n Are you sure you want to save?")
-    if is_ok:
-        if pass_len >= EXPECTED_PASS and len(website) > 3:
-            with open("Data.txt", mode="a") as data_file:
-                content = f"{website} | {email} | {password}\n"
-                data_file.write(content)
+    if pass_len >= EXPECTED_PASS and len(website) > 3:
+        try:
+            with open("Data.json", mode="r") as data_file:
+            # To update data in json format: (1) Reading the data by "load()" Method  (2) Updating old data "data.update()" Method  (3) Saving the updated data by using "dump()"Method
+            
+            # Reading the data
+                data = json.load(data_file)
+
+        except FileNotFoundError:
+            with open("Data.json", mode="w") as data_file:
+                json.dump(new_data, data_file, indent=4)
+        else: # This will work if everything in try work successfully
+            # Updating the data
+             data.update(new_data)
+
+             with open("Data.json", mode="w") as data_file: 
+            # Writing the data
+                json.dump(data, data_file, indent=4)               
                 messagebox.showinfo(title=website , message=f"Your private information added successfully")
+        finally:
+            website_entry.delete(0, 'end')
+            password_entry.delete(0, 'end')
+            website_entry.focus()
+    else:
+        messagebox.showerror(title="not valid", message=f"Sorry check the website: {website}\nand make sure your password: {password} is more than 8 characters")
+
+#----------------------------- Search -----------------------------------------#
+
+def Find_Password():
+    website = website_entry.get()
+    try:
+        with open("Data.json", mode="r") as data_file:
+            #reading the data
+            data = json.load(data_file)
+
+    except FileNotFoundError:
+        messagebox.showerror("No data file found")
+    else:
+        if website in data:
+            email = data[website]["email"]
+            password = data[website]["password"]
+            messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {password}")
         else:
-            messagebox.showerror(title="not valid", message=f"Sorry check the website: {website}\nand make sure your password: {password} is more than 8 characters")
-    website_entry.delete(0, 'end')
-    email_entry.delete(0, 'end')
-    password_entry.delete(0, 'end')
-    website_entry.focus()
+            messagebox.showinfo(title="error", message=f"No details for This Website: '{website}' exists.")
+
 # ---------------------------- UI SETUP --------------------------------------- #
 window = Tk()
 window.title("password man")
@@ -69,6 +110,9 @@ generate_password_button.grid(row=3, column=2, padx=1, pady=3)
 
 add_password_button = Button(text="Add", width=33, command=add_password)
 add_password_button.grid(row=4, column=1, columnspan=2)
+
+search_button = Button(text="Search", width=15, command=Find_Password)
+search_button.grid(row=1, column=2, padx=1, pady=3)
 #------------------------------------------------------------------------------- #
 canvas = Canvas(width=200, height=200, highlightthickness=0)
 password_man = PhotoImage(file="logo.png")
