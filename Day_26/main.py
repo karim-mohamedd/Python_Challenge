@@ -6,6 +6,14 @@ df = pandas.read_csv("nato_phonetic_alphabet.csv")
 
 phonetic_dict = {row.letter : row.code for (index, row) in df.iterrows()} #"iterrows()" is a method to loop in the rows of dataframe
 
-word = input("Enter a Word: ").upper()
-phonetic_list= [phonetic_dict[letter] for letter in word]
-print(phonetic_list)
+def Generate_phonetic():
+    word = input("Enter a Word: ").upper()
+    try:
+        phonetic_list= [phonetic_dict[letter] for letter in word]
+    except KeyError:
+        print("sorry only letters are accepted")
+        Generate_phonetic()
+    else:
+        print(phonetic_list)
+
+Generate_phonetic()
