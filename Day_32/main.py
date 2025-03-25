@@ -17,3 +17,4 @@ if weekday == 4:
         connection.starttls()
         connection.login(user=MY_EMAIL, password=MY_PASSWORD)
         connection.sendmail(from_addr=MY_EMAIL, to_addrs=MY_EMAIL, msg=f"Subject:Starting week motivation\n\n{quote}")
+
