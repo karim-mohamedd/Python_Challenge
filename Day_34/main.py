@@ -19,3 +19,4 @@ sun_set = data["results"]["sunset"]
 day_length = data["results"]["day_length"]
 
 print(f"The sun rise in Egypt is: {sun_rise} and the sunset is: {sun_set} the day length is: {day_length}")
+
