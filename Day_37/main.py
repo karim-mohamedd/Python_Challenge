@@ -82,7 +82,6 @@ if abs(diff_percent) > 1:
     print(response)
 
 
-
 #Optional TODO: Format the message like this: 
 """
 TSLA: 🔺2%
