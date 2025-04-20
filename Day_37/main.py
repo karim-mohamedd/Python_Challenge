@@ -1,5 +1,7 @@
+from newsapi import NewsApiClient
 import requests
-
+from vonage import Auth, Vonage
+from vonage_sms import SmsMessage, SmsResponse
 
 STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla Inc"
@@ -7,7 +9,11 @@ COMPANY_NAME = "Tesla Inc"
 STOCK_ENDPOINT = "https://www.alphavantage.co/query"
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 
-STOCK_API_KEY = "GI65UksdajfkaweDS" 
+STOCK_API_KEY = "YOUR OWN KEY"
+NEWS_API_KEY = "YOUR OWN KEY"
+
+VONAGE_KEY = "YOUR OWN KEY"
+VONAGE_SECRET = "YOUR OWN KEY"
 
     ## STEP 1: Use https://www.alphavantage.co/documentation/#daily
 # When stock price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
@@ -33,27 +39,47 @@ the_day_before_closing = the_day_before["4. close"]
 
 #TODO 3. - Find the positive difference between 1 and 2. e.g. 40 - 20 = -20, but the positive difference is 20. Hint: https://www.w3schools.com/python/ref_func_abs.asp
 the_difference = round(abs(float(yesterday_closing_price) - float(the_day_before_closing)), 2)
-print(f"{the_difference}$$")
 
+up_down = None
+if the_difference > 0:
+    up_down = "🚨 🔼"
+else:
+    up_down = "🚨 🔽"
 #TODO 4. - Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
 diff_percent = round(the_difference / float(yesterday_closing_price) * 100, 2)
-print(f"{diff_percent}%")
 #TODO 5. - If TODO4 percentage is greater than 5 then print("Get News").
+if abs(diff_percent) > 1:
+    news_params = {
+        "apiKey":NEWS_API_KEY,
+        "qInTitle":COMPANY_NAME,
+    }
 
     ## STEP 2: https://newsapi.org/ 
     # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 
 #TODO 6. - Instead of printing ("Get News"), use the News API to get articles related to the COMPANY_NAME.
+    news_response = requests.get(NEWS_ENDPOINT, params=news_params)
+    articles = news_response.json()["articles"]
 
 #TODO 7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
-
-
+    Three_articles =articles[:3]
+    print(Three_articles)
+    formatted_articles = [f"{STOCK_NAME} : {up_down}{diff_percent}%\nHeadline: {article['title']}\nBrief: {article['description']}" for article in articles]
     ## STEP 3: Use twilio.com/docs/sms/quickstart/python
     #to send a separate message with each article's title and description to your phone number. 
 
 #TODO 8. - Create a new list of the first 3 article's headline and description using list comprehension.
 
 #TODO 9. - Send each article as a separate message via Twilio. 
+    client = Vonage(Auth(api_key=VONAGE_KEY, api_secret=VONAGE_SECRET))
+    for msg in formatted_articles:
+        message = SmsMessage(
+        to="201011261561",
+        from_="VONAGE",
+        text=msg,
+)
+    response: SmsResponse = client.sms.send(message)
+    print(response)
 
 
 
