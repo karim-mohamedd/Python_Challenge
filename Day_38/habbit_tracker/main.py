@@ -37,3 +37,5 @@ post_pixel_params = {
 
 pixel_response = requests.post(url=post_pixel_endpoint, json=post_pixel_params, headers=headers)
 print(pixel_response.text)
+
+
