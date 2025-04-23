@@ -13,8 +13,8 @@ API_KEY = os.environ["ENV_API_KEY"]
 nutritionix_endpoint = "https://trackapi.nutritionix.com/v2/natural/exercise"
 nutritionix_params = {
     "query":input("What was your workout like today?: "),
-    "weight_kg":float(input("What is your weight?: ")),
-    "height_cm":float(input("What is your height?: ")),
+    "weight_kg":float(input("What is your weight in kg?: ")),
+    "height_cm":float(input("What is your height in cm?: ")),
     "age":int(input("How old are you?: ")),
 }
 headers = {
