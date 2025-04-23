@@ -53,5 +53,3 @@ bearer_headers = {
 sheet_response = requests.post(url=SHEET_ENDPOINT,json=sheet_inputs, headers=bearer_headers)
 data = sheet_response.json()
 print(data)
-
-
